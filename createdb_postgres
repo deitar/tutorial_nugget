@@ -1,0 +1,16 @@
+# library for connecting to the Postgres database
+import psycopg2
+import psycopg2.extras
+
+# build the postgres database connection string
+db_username = 'postgres'
+db_password = '1234'
+db_host = 'localhost'
+db_name = 'postgres'
+db_uri = f"postgres://{db_username}:{db_password}@{db_host}:5432/{db_name}"
+conn = psycopg2.connect(db_uri)
+
+# Open a cursor to perform database operations
+cur = conn.cursor()
+create_table_query = "CREATE TABLE copy_command_test (fname varchar, lname varchar);"
+cur.execute(create_table_query)
