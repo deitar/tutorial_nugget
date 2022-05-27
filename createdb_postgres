@@ -14,3 +14,18 @@ conn = psycopg2.connect(db_uri)
 cur = conn.cursor()
 create_table_query = "CREATE TABLE copy_command_test (fname varchar, lname varchar);"
 cur.execute(create_table_query)
+
+
+# set the path to your csv file
+file_path = '…'
+copy_table_query = "COPY copy_command_test FROM '{file_path}' WITH (FORMAT csv);"
+cur.execute(copy_table_query)
+
+
+copy_table_query = "COPY copy_command_test FROM STDIN WITH (FORMAT csv);"
+f = StringIO('''fname,lname\ndebo,shola\nmope,tunji''')
+cur.copy_expert(copy_table_query, f)
+
+
+
+
