@@ -8,7 +8,8 @@ db_username = 'postgres'
 db_password = '1234'
 db_host = 'localhost'
 db_name = 'postgres'
-db_uri = f"postgres://{db_username}:{db_password}@{db_host}:5432/{db_name}"
+db_port = 5432
+db_uri = f"postgres://{db_username}:{db_password}@{db_host}:{db_port}/{db_name}"
 conn = psycopg2.connect(db_uri)
 
 # Open a cursor to perform database operations
@@ -18,7 +19,7 @@ cur.execute(create_table_query)
 
 
 # set the path to your csv file
-file_path = '…'
+file_path = '<file_path>'
 copy_table_query = "COPY copy_command_test FROM '{file_path}' WITH (FORMAT csv);"
 cur.execute(copy_table_query)
 
